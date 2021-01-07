@@ -22,11 +22,11 @@ function Tweet({ tweet }) {
 }
 
 const testTweet = {
-    message: "Something about cats.",
+    message: "Something about cats and hiking. Hooray for React! :)",
     gravatar: "42135a315f75a04c2468fc518e3424d3",
     author: {
-        handle: "catperson",
-        name: "IAMA Cat Person"
+        handle: "PatrickNepp",
+        name: "Patrick Nepp"
     },
     likes: 2,
     retweet: 18,
