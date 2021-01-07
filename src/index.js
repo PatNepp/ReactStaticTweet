@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 import moment from 'moment';
+import PropTypes from 'prop-types'
 
 function Tweet({ tweet }) {
     return (
@@ -21,6 +22,20 @@ function Tweet({ tweet }) {
     );
 }
 
+Tweet.propTypes = {
+    tweet: PropTypes.shape({
+        message: PropTypes.string,
+        gravatar: PropTypes.string,
+        author: PropTypes.shape({
+            handle: PropTypes.string,
+            name: PropTypes.string
+        }),
+        likes: PropTypes.number,
+        retweet: PropTypes.number,
+        timestamp: PropTypes.string
+    })
+}
+
 const testTweet = {
     message: "Something about cats and hiking. Hooray for React! :)",
     gravatar: "42135a315f75a04c2468fc518e3424d3",
@@ -30,7 +45,7 @@ const testTweet = {
     },
     likes: 2,
     retweet: 18,
-    timestamp: "2016-07-30 21:24:37"
+    timestamp: "2021-01-06 19:56:30"
 }
 
 function Avatar({ hash }) {
@@ -43,12 +58,20 @@ function Avatar({ hash }) {
     );
 }
 
+Avatar.propTypes = {
+    hash: PropTypes.string
+}
+
 function Message({ text }) {
     return (
         <div className="message">
             {text}
         </div>
     );
+}
+
+Message.propTypes = {
+    text: PropTypes.string
 }
 
 function Author({ author }) {
@@ -61,6 +84,13 @@ function Author({ author }) {
     )
 }
 
+Author.propTypes = {
+    author: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        handle: PropTypes.string.isRequired
+    }).isRequired
+};
+
 const Time = ({ time }) => {
     const timeString = moment(time).fromNow();
     return (
@@ -69,6 +99,10 @@ const Time = ({ time }) => {
         </span>
     )  
 };
+
+Time.propTypes = {
+    time: PropTypes.string
+}
 
 const Reply = () => (
     <i className="fa fa-reply reply-button"/>
@@ -93,6 +127,10 @@ const Retweet = ({ count }) => (
     </span>
 );
 
+Retweet.propTypes = {
+    count: PropTypes.number
+}
+
 const Like = ({ count }) => (
     <span className="like-button">
         <i className="fa fa-heart"/>
@@ -102,6 +140,10 @@ const Like = ({ count }) => (
             </span>}
     </span> 
 );
+
+Like.propTypes = {
+    count: PropTypes.number
+}
 
 const MoreOptions = () => (
     <i className="fa fa-ellipsis-h more-options-button"/>
